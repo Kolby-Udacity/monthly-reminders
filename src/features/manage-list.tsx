@@ -1,6 +1,9 @@
-import { FC, FormEvent, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { BiTrash, BiListPlus } from 'react-icons/bi';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { Button } from '@/components/button';
 import { useMutateReminder } from '@/hooks/use-mutate-reminder';
 import { useDeleteList } from '@/hooks/use-delete-list';
@@ -62,9 +65,25 @@ export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
   );
 };
 
+// Create a schema to validate the form with
+const formSchema = z.object({
+  title: z.string().nonempty({ message: 'Required' }),
+  due: z.number().gt(1).lt(27),
+  notes: z.string(),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
   ({ listId, onRequestClose }) => {
     const reminderMutation = useMutateReminder();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<FormData>({
+      resolver: zodResolver(formSchema), // magic that integrates react-hook-form with zod
+    });
 
     useEffect(() => {
       if (reminderMutation.isSuccess) {
@@ -77,12 +96,9 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
     }, [onRequestClose]);
 
     const handleCreateSubmit = useCallback(
-      (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const data = new FormData(event.target as HTMLFormElement);
+      (formData: FormData) => {
         const newReminder = {
-          ...Object.fromEntries(data),
+          ...formData,
           completed: false,
         } as Reminder;
 
@@ -99,30 +115,37 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
         />
         <form
           className="fixed bg-light rounded-lg shadow-2xl z-20 w-150 p-10 mt-20 space-y-4 left-1/2 transform -translate-x-1/2"
-          onSubmit={handleCreateSubmit}
+          onSubmit={handleSubmit(handleCreateSubmit)}
         >
           <h2>Create a reminder</h2>
           <input
+            {...register('title')}
             className="p-2 rounded-lg bg-white border border-gray w-full"
-            name="title"
             placeholder="title"
             type="text"
             autoFocus
           />
+          {errors.title?.message && (
+            <p className="text-red">{errors.title.message}</p>
+          )}
           <input
+            {...register('due', { valueAsNumber: true })}
             className="p-2 rounded-lg bg-white border border-gray w-full"
-            name="due"
             placeholder="due"
             type="number"
-            min="1"
-            max="27"
           />
+          {errors.due?.message && (
+            <p className="text-red">{errors.due.message}</p>
+          )}
           <input
+            {...register('notes')}
             className="p-2 rounded-lg bg-white border border-gray w-full"
-            name="notes"
             placeholder="notes"
             type="text"
           />
+          {errors.notes?.message && (
+            <p className="text-red">{errors.notes.message}</p>
+          )}
           <button
             className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
             disabled={reminderMutation.isLoading}

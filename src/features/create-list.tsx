@@ -1,4 +1,7 @@
-import { FC, FormEvent, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { IconButton } from '@/components/icon-action';
 import { useMutateLists } from '@/hooks/use-mutate-lists';
 import { ReminderList } from '@/types';
@@ -24,10 +27,22 @@ export const CreateList: FC = () => {
   );
 };
 
+// Create a schema to validate the form with
+const formSchema = z.object({
+  title: z.string().nonempty({ message: 'Required' }),
+});
+
 const CreateListModal: FC<{ onRequestClose: () => void }> = ({
   onRequestClose,
 }) => {
   const reminderListMutation = useMutateLists();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ReminderList>({
+    resolver: zodResolver(formSchema), // magic that integrates react-hook-form with zod
+  });
 
   useEffect(() => {
     if (reminderListMutation.isSuccess) {
@@ -40,14 +55,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
   }, [onRequestClose]);
 
   const handleCreateSubmit = useCallback(
-    (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-
-      const data = new FormData(event.target as HTMLFormElement);
-      const newReminderList = Object.fromEntries(
-        data
-      ) as unknown as ReminderList;
-
+    (newReminderList: ReminderList) => {
       reminderListMutation.mutate(newReminderList);
     },
     [reminderListMutation]
@@ -61,16 +69,19 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
       />
       <form
         className="fixed bg-light rounded-lg shadow-2xl z-20 w-150 p-10 mt-20 space-y-4"
-        onSubmit={handleCreateSubmit}
+        onSubmit={handleSubmit(handleCreateSubmit)}
       >
         <h2>Create a list</h2>
         <input
           className="p-2 rounded-lg bg-white border border-gray w-full"
-          name="title"
+          {...register('title')}
           placeholder="title"
           type="text"
           autoFocus
         />
+        {errors.title?.message && (
+          <p className="text-red">{errors.title.message}</p>
+        )}
         <button
           className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
           disabled={reminderListMutation.isLoading}
