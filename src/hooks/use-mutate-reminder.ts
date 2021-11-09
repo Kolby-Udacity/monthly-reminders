@@ -1,0 +1,48 @@
+import { useMutation, useQueryClient } from 'react-query';
+import { GraphQLClient } from 'graphql-request';
+import { Reminder } from '@/types';
+import { API_URL } from '@/constants';
+
+const graphQLClient = new GraphQLClient(API_URL);
+
+const createReminderList = (newReminder: Reminder, reminderListId: string) => {
+  return graphQLClient.request(`
+    mutation {
+      createReminder(
+        data: {
+          title: "${newReminder.title}"
+          notes: "${newReminder.notes}"
+          due: ${newReminder.due}
+          completed: ${newReminder.completed}
+          ckvr68ntz0dou01z9hvi5h3bz:{connect:{id:"${reminderListId}"}}}
+      ) {
+        id
+      }
+    }  
+  `);
+};
+
+export const useMutateReminder = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ({
+      newReminder,
+      reminderListId,
+    }: {
+      newReminder: Reminder;
+      reminderListId: string;
+    }) => {
+      return createReminderList(newReminder, reminderListId);
+    },
+    {
+      onSuccess: () => {
+        // This triggers React Query to fetch and re-cache the update Lists
+        queryClient.refetchQueries('reminderLists');
+      },
+      onError: (error: Error) => {
+        console.error(`Error creating new Reminder: ${error.message}`);
+      },
+    }
+  );
+};

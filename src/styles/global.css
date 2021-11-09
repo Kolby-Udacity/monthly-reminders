@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h3 {
+    @apply text-2xl;
+    @apply text-blue;
+    @apply font-bold;
+    @apply tracking-wider;
+  }
+}
