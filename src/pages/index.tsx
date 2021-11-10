@@ -3,10 +3,18 @@ import Head from 'next/head';
 import { AppBar } from '@/components/app-bar';
 import { CreateList } from '@/features/create-list';
 import { DisplayLists } from '@/features/display-lists';
+import { useContext } from 'react';
+import { ThemeContext } from '@/contexts/theme-context';
 
 const Home: NextPage = () => {
+  const { themeMode } = useContext(ThemeContext);
+
   return (
-    <div className="bg-light min-h-screen flex-col">
+    <div
+      className={` min-h-screen flex-col ${
+        themeMode === 'light' ? 'bg-light' : 'bg-dark'
+      }`}
+    >
       <Head>
         <title>Monthly Reminders</title>
         <link rel="icon" href="/favicon.ico" />

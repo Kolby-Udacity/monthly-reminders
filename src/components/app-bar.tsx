@@ -1,10 +1,18 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ThemeToggle } from '@/features/theme-toggle';
+import { ThemeContext } from '@/contexts/theme-context';
 
 export const AppBar: FC = () => {
+  const { themeMode } = useContext(ThemeContext);
+
   return (
-    <div className="bg-white h-16 shadow-sm flex items-center justify-center">
+    <div
+      className={`h-16 shadow-sm flex items-center justify-center ${
+        themeMode === 'light' ? 'bg-white' : 'bg-black'
+      }`}
+    >
       <Link href="/">
         <a>
           <Image
@@ -15,6 +23,9 @@ export const AppBar: FC = () => {
           />
         </a>
       </Link>
+      <div className="absolute right-4">
+        <ThemeToggle />
+      </div>
     </div>
   );
 };
