@@ -6,7 +6,7 @@ export const ThemeToggle: FC = () => {
   const { themeMode, toggleMode } = useContext(ThemeContext);
 
   const handleToggleClick = useCallback(() => {
-    toggleMode!();
+    toggleMode();
   }, [toggleMode]);
 
   return (

@@ -6,8 +6,8 @@ export type ThemeMode = 'light' | 'dark';
 
 export const ThemeContext = createContext<{
   themeMode: ThemeMode;
-  toggleMode?: () => void;
-}>({ themeMode: initialMode });
+  toggleMode: () => void;
+}>(undefined!);
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [themeMode, setThemeMode] = useState<ThemeMode>(initialMode);
