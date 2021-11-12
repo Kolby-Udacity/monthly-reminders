@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { Button } from '@/components/button';
-import { useMutateReminder } from '@/hooks/use-mutate-reminder';
+import { useCreateReminder } from '@/hooks/use-create-reminder';
 import { useDeleteList } from '@/hooks/use-delete-list';
 import { Reminder, ReminderList } from '@/types';
 
@@ -76,7 +76,7 @@ type FormData = z.infer<typeof formSchema>;
 
 const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
   ({ listId, onRequestClose }) => {
-    const reminderMutation = useMutateReminder();
+    const reminderMutation = useCreateReminder();
     const {
       register,
       handleSubmit,

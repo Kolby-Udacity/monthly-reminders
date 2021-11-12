@@ -3,7 +3,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { IconButton } from '@/components/icon-action';
-import { useMutateLists } from '@/hooks/use-mutate-lists';
+import { useCreateList } from '@/hooks/use-create-list';
 import { ReminderList } from '@/types';
 
 export const CreateList: FC = () => {
@@ -35,7 +35,7 @@ const formSchema = z.object({
 const CreateListModal: FC<{ onRequestClose: () => void }> = ({
   onRequestClose,
 }) => {
-  const reminderListMutation = useMutateLists();
+  const reminderListMutation = useCreateList();
   const {
     register,
     handleSubmit,

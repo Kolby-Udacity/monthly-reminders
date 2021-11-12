@@ -22,7 +22,7 @@ const createReminderList = (newReminder: Reminder, reminderListId: string) => {
   `);
 };
 
-export const useMutateReminder = () => {
+export const useCreateReminder = () => {
   const queryClient = useQueryClient();
 
   return useMutation(

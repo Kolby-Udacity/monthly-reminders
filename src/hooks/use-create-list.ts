@@ -15,7 +15,7 @@ const createReminderList = (newReminderList: ReminderList) => {
   `);
 };
 
-export const useMutateLists = () => {
+export const useCreateList = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
