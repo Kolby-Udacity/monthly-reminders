@@ -1,9 +1,9 @@
+import { useContext } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { AppBar } from '@/components/app-bar';
 import { CreateList } from '@/features/create-list';
 import { DisplayLists } from '@/features/display-lists';
-import { useContext } from 'react';
 import { ThemeContext } from '@/contexts/theme-context';
 
 const Home: NextPage = () => {

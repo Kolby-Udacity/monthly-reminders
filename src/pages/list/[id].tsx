@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { AppBar } from '@/components/app-bar';
 import { ManageList } from '@/features/manage-list';
-import { DisplayReminders } from '@/features/display-reminders';
+import { ManageReminders } from '@/features/manage-reminders';
 import { ThemeContext } from '@/contexts/theme-context';
 import { useActiveList } from '@/hooks/use-active-list';
 
@@ -30,7 +30,7 @@ const List: NextPage = () => {
         <div className="w-full max-w-screen-md">
           <ManageList list={list} />
           <div className="h-4" />
-          <DisplayReminders reminders={list?.reminders} />
+          <ManageReminders reminders={list?.reminders} />
         </div>
       </main>
     </div>

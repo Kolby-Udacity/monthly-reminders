@@ -3,7 +3,7 @@ import { useDeleteReminder } from '@/hooks/use-delete-reminder';
 import { useUpdateReminder } from '@/hooks/use-update-reminder';
 import { Reminder } from '@/types';
 
-export const DisplayReminders: FC<{ reminders?: Reminder[] }> = ({
+export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
   reminders,
 }) => {
   const deleteReminder = useDeleteReminder();

@@ -1,15 +1,12 @@
-import { FC, ReactNode } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 
-export const Button: FC<{ children: ReactNode; onClick: () => void }> = ({
-  children,
-  onClick,
-}) => {
+export const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = (props) => {
   return (
     <button
+      {...props}
       className="bg-white rounded-lg shadow-md hover:shadow-lg active:shadow-sm transition-shadow"
-      onClick={onClick}
     >
-      {children}
+      {props.children}
     </button>
   );
 };
