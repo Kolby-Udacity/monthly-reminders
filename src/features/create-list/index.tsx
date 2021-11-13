@@ -3,8 +3,8 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { IconButton } from '@/components/icon-action';
-import { useMutateLists } from '@/hooks/use-mutate-lists';
 import { ReminderList } from '@/types';
+import { useCreateListMutation } from '@/services/lists';
 
 export const CreateList: FC = () => {
   const [createListModalVisible, setCreateListModalVisible] = useState(false);
@@ -35,7 +35,8 @@ const formSchema = z.object({
 const CreateListModal: FC<{ onRequestClose: () => void }> = ({
   onRequestClose,
 }) => {
-  const reminderListMutation = useMutateLists();
+  const [reminderListMutation, { isSuccess, isLoading }] =
+    useCreateListMutation();
   const {
     register,
     handleSubmit,
@@ -45,10 +46,10 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
   });
 
   useEffect(() => {
-    if (reminderListMutation.isSuccess) {
+    if (isSuccess) {
       onRequestClose();
     }
-  }, [reminderListMutation.isSuccess, onRequestClose]);
+  }, [isSuccess, onRequestClose]);
 
   const handleBackdropClick = useCallback(() => {
     onRequestClose();
@@ -56,7 +57,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
 
   const handleCreateSubmit = useCallback(
     (newReminderList: ReminderList) => {
-      reminderListMutation.mutate(newReminderList);
+      reminderListMutation(newReminderList);
     },
     [reminderListMutation]
   );
@@ -84,7 +85,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
         )}
         <button
           className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
-          disabled={reminderListMutation.isLoading}
+          disabled={isLoading}
         >
           Create list
         </button>

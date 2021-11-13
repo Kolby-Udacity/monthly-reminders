@@ -1,19 +1,18 @@
-import type { AppProps } from 'next/app';
 import { FC } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { store } from '@/store';
 import { ThemeProvider } from '@/contexts/theme-context';
 import 'tailwindcss/tailwind.css';
 import '../styles/global.css';
 
-const queryClient = new QueryClient();
-
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <ThemeProvider>
         <Component {...pageProps} />
       </ThemeProvider>
-    </QueryClientProvider>
+    </Provider>
   );
 };
 

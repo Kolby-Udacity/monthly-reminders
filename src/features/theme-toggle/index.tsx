@@ -1,6 +1,6 @@
-import { ThemeContext } from '@/contexts/theme-context';
 import { FC, useCallback, useContext } from 'react';
 import { RiSunFill, RiMoonClearFill } from 'react-icons/ri';
+import { ThemeContext } from '@/contexts/theme-context';
 
 export const ThemeToggle: FC = () => {
   const { themeMode, toggleMode } = useContext(ThemeContext);

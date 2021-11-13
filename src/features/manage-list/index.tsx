@@ -5,20 +5,22 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { Button } from '@/components/button';
-import { useMutateReminder } from '@/hooks/use-mutate-reminder';
-import { useDeleteList } from '@/hooks/use-delete-list';
 import { Reminder, ReminderList } from '@/types';
+import {
+  useCreateReminderMutation,
+  useDeleteListMutation,
+} from '@/services/lists';
 
 export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
   const router = useRouter();
   const [reminderModalVisible, setReminderModalVisible] = useState(false);
-  const deleteList = useDeleteList();
+  const [deleteList, { isSuccess, isLoading }] = useDeleteListMutation();
 
   useEffect(() => {
-    if (deleteList.isSuccess) {
+    if (isSuccess) {
       router.push('/');
     }
-  }, [deleteList.isSuccess, router]);
+  }, [isSuccess, router]);
 
   const handleCreateReminderClick = useCallback(() => {
     setReminderModalVisible(true);
@@ -29,7 +31,7 @@ export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
   }, []);
 
   const handleDeleteClick = useCallback(() => {
-    deleteList.mutate(list!.id!);
+    deleteList(list!.id!);
   }, [deleteList, list]);
 
   return (
@@ -49,7 +51,7 @@ export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
           </div>
         )}
         <div className="space-x-2">
-          <Button onClick={handleDeleteClick}>
+          <Button onClick={handleDeleteClick} disabled={isLoading}>
             <div className="w-10 h-10 flex items-center justify-center text-2xl">
               <BiTrash />
             </div>
@@ -76,7 +78,8 @@ type FormData = z.infer<typeof formSchema>;
 
 const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
   ({ listId, onRequestClose }) => {
-    const reminderMutation = useMutateReminder();
+    const [reminderMutation, { isSuccess, isLoading }] =
+      useCreateReminderMutation();
     const {
       register,
       handleSubmit,
@@ -86,10 +89,10 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
     });
 
     useEffect(() => {
-      if (reminderMutation.isSuccess) {
+      if (isSuccess) {
         onRequestClose();
       }
-    }, [reminderMutation.isSuccess, onRequestClose]);
+    }, [isSuccess, onRequestClose]);
 
     const handleBackdropClick = useCallback(() => {
       onRequestClose();
@@ -102,7 +105,7 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
           completed: false,
         } as Reminder;
 
-        reminderMutation.mutate({ newReminder, reminderListId: listId });
+        reminderMutation({ newReminder, reminderListId: listId });
       },
       [listId, reminderMutation]
     );
@@ -148,7 +151,7 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
           )}
           <button
             className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
-            disabled={reminderMutation.isLoading}
+            disabled={isLoading}
           >
             Create reminder
           </button>

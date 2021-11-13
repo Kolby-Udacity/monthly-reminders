@@ -1,24 +1,28 @@
 import { FC, ReactNode, useCallback, useMemo } from 'react';
-import { useDeleteReminder } from '@/hooks/use-delete-reminder';
-import { useUpdateReminder } from '@/hooks/use-update-reminder';
 import { Reminder } from '@/types';
+import {
+  useDeleteReminderMutation,
+  useUpdateReminderMutation,
+} from '@/services/lists';
 
-export const DisplayReminders: FC<{ reminders?: Reminder[] }> = ({
+export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
   reminders,
 }) => {
-  const deleteReminder = useDeleteReminder();
-  const updateReminder = useUpdateReminder();
+  const [deleteReminder, { isLoading: isDeleteLoading }] =
+    useDeleteReminderMutation();
+  const [updateReminder, { isLoading: isUpdateLoading }] =
+    useUpdateReminderMutation();
 
   const handleRemoveClick = useCallback(
     (reminderId: string) => {
-      deleteReminder.mutate(reminderId);
+      deleteReminder(reminderId);
     },
     [deleteReminder]
   );
 
   const handleToggleFinishClick = useCallback(
     (reminderId: string, completed: boolean) => {
-      updateReminder.mutate({ reminderId, completed: !completed });
+      updateReminder({ reminderId, completed: !completed });
     },
     [updateReminder]
   );
@@ -59,13 +63,14 @@ export const DisplayReminders: FC<{ reminders?: Reminder[] }> = ({
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     className="text-red mr-2 bg-light px-2 py-1.5 rounded-lg border border-opacity-50 border-gray hover:bg-red hover:bg-opacity-10"
-                    disabled={deleteReminder.isLoading}
+                    disabled={isDeleteLoading}
                     onClick={() => handleRemoveClick(reminder.id!)}
                   >
                     Remove
                   </button>
                   <button
                     className="text-blue bg-light px-2 py-1.5 rounded-lg border border-opacity-50 border-gray hover:bg-blue hover:bg-opacity-10"
+                    disabled={isUpdateLoading}
                     onClick={() =>
                       handleToggleFinishClick(reminder.id!, reminder.completed)
                     }

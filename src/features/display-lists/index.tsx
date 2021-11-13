@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { IconLink } from '@/components/icon-action';
-import { useLists } from '@/hooks/use-lists';
 import { ReminderList } from '@/types';
+import { useGetListsQuery } from '@/services/lists';
 
 export const DisplayLists: FC = () => {
-  const { data: lists } = useLists();
+  const { data: lists } = useGetListsQuery({});
 
   return !!lists?.length ? (
     <div className="space-y-8 w-full flex flex-col items-center">
