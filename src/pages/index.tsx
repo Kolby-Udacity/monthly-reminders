@@ -1,18 +1,18 @@
-import { useContext } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useSelector } from 'react-redux';
 import { AppBar } from '@/components/app-bar';
 import { CreateList } from '@/features/create-list';
 import { DisplayLists } from '@/features/display-lists';
-import { ThemeContext } from '@/contexts/theme-context';
+import { RootState } from '@/store';
 
 const Home: NextPage = () => {
-  const { themeMode } = useContext(ThemeContext);
+  const theme = useSelector((state: RootState) => state.theme);
 
   return (
     <div
       className={` min-h-screen flex-col ${
-        themeMode === 'light' ? 'bg-light' : 'bg-dark'
+        theme.mode === 'light' ? 'bg-light' : 'bg-dark'
       }`}
     >
       <Head>

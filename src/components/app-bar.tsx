@@ -1,16 +1,17 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ThemeToggle } from '@/features/theme-toggle';
-import { ThemeContext } from '@/contexts/theme-context';
+import { RootState } from '@/store';
 
 export const AppBar: FC = () => {
-  const { themeMode } = useContext(ThemeContext);
+  const theme = useSelector((state: RootState) => state.theme);
 
   return (
     <div
       className={`h-16 shadow-sm flex items-center justify-center ${
-        themeMode === 'light' ? 'bg-white' : 'bg-black'
+        theme.mode === 'light' ? 'bg-white' : 'bg-black'
       }`}
     >
       <Link href="/">
