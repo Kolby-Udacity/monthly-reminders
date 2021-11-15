@@ -5,8 +5,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { Button } from '@/components/button';
-import { useCreateReminder } from '@/hooks/use-create-reminder';
-import { useDeleteList } from '@/hooks/use-delete-list';
+import { useCreateReminder, useDeleteList } from '@/services';
 import { Reminder, ReminderList } from '@/types';
 
 export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {

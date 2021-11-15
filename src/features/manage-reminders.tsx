@@ -1,6 +1,5 @@
 import { FC, ReactNode, useCallback, useMemo } from 'react';
-import { useDeleteReminder } from '@/hooks/use-delete-reminder';
-import { useUpdateReminder } from '@/hooks/use-update-reminder';
+import { useDeleteReminder, useUpdateReminder } from '@/services';
 import { Reminder } from '@/types';
 
 export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({

@@ -3,7 +3,7 @@ import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { IconButton } from '@/components/icon-action';
-import { useCreateList } from '@/hooks/use-create-list';
+import { useCreateList } from '@/services';
 import { ReminderList } from '@/types';
 
 export const CreateList: FC = () => {

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { IconLink } from '@/components/icon-action';
-import { useLists } from '@/hooks/use-lists';
+import { useLists } from '@/services';
 import { ReminderList } from '@/types';
 
 export const DisplayLists: FC = () => {
