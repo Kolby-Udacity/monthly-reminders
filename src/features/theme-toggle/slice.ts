@@ -28,7 +28,4 @@ export const themeSlice = createSlice({
 
 export const { toggleThemeMode } = themeSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.theme;
-
 export default themeSlice.reducer;
