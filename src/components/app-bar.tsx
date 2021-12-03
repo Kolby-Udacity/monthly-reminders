@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { ThemeToggle } from '@/features/theme-toggle';
 import { RootState } from '@/store';
 

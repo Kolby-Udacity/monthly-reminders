@@ -1,10 +1,11 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import * as z from 'zod';
+
 import { IconButton } from '@/components/icon-action';
-import { ReminderList } from '@/types';
 import { useCreateListMutation } from '@/services/lists';
+import { ReminderList } from '@/types';
 
 export const CreateList: FC = () => {
   const [createListModalVisible, setCreateListModalVisible] = useState(false);

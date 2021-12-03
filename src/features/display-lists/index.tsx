@@ -1,7 +1,8 @@
 import { FC } from 'react';
+
 import { IconLink } from '@/components/icon-action';
-import { ReminderList } from '@/types';
 import { useGetListsQuery } from '@/services/lists';
+import { ReminderList } from '@/types';
 
 export const DisplayLists: FC = () => {
   const { data: lists } = useGetListsQuery({});

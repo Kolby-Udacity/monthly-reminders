@@ -1,9 +1,10 @@
 import { FC, ReactNode, useCallback, useMemo } from 'react';
-import { Reminder } from '@/types';
+
 import {
   useDeleteReminderMutation,
   useUpdateReminderMutation,
 } from '@/services/lists';
+import { Reminder } from '@/types';
 
 export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
   reminders,

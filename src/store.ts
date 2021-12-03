@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { listsApi } from '@/services/lists';
+
 import { themeSlice } from '@/features/theme-toggle/slice';
+import { listsApi } from '@/services/lists';
 
 export const store = configureStore({
   reducer: {

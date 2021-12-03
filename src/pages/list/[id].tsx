@@ -1,7 +1,8 @@
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useSelector } from 'react-redux';
+
 import { AppBar } from '@/components/app-bar';
 import { ManageList } from '@/features/manage-list';
 import { ManageReminders } from '@/features/manage-reminders';

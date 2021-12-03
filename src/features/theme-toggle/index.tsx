@@ -1,7 +1,9 @@
 import { FC, useCallback, useContext } from 'react';
+import { RiMoonClearFill,RiSunFill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
-import { RiSunFill, RiMoonClearFill } from 'react-icons/ri';
+
 import { RootState } from '@/store';
+
 import { toggleThemeMode } from './slice';
 
 export const ThemeToggle: FC = () => {

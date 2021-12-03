@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useSelector } from 'react-redux';
+
 import { AppBar } from '@/components/app-bar';
 import { CreateList } from '@/features/create-list';
 import { DisplayLists } from '@/features/display-lists';

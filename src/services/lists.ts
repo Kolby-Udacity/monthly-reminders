@@ -1,7 +1,8 @@
-import { gql } from 'graphql-request';
-import { z } from 'zod';
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
+import { gql } from 'graphql-request';
+import { z } from 'zod';
+
 import { API_URL, DEFAULT_HEADERS } from '@/constants';
 import { Reminder, ReminderList, reminderListSchema } from '@/types';
 
