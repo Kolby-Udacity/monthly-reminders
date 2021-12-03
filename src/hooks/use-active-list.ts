@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
+
 import { useLists } from '@/services';
 
 export const useActiveList = () => {

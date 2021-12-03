@@ -1,9 +1,10 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { BiTrash, BiListPlus } from 'react-icons/bi';
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
+import { BiListPlus, BiTrash } from 'react-icons/bi';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { useRouter } from 'next/router';
+import * as z from 'zod';
+
 import { Button } from '@/components/button';
 import { useCreateReminder, useDeleteList } from '@/services';
 import { Reminder, ReminderList } from '@/types';

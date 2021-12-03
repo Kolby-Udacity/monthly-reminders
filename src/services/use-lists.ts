@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { gql, GraphQLClient } from 'graphql-request';
 import { z } from 'zod';
+
 import { API_URL, DEFAULT_HEADERS } from '@/constants';
-import { reminderListSchema, ReminderList } from '@/types';
+import { ReminderList,reminderListSchema } from '@/types';
 
 const graphQLClient = new GraphQLClient(API_URL, {
   headers: { ...DEFAULT_HEADERS },

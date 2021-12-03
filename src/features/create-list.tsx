@@ -1,7 +1,8 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import * as z from 'zod';
+
 import { IconButton } from '@/components/icon-action';
 import { useCreateList } from '@/services';
 import { ReminderList } from '@/types';

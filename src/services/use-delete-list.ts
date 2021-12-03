@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { GraphQLClient } from 'graphql-request';
+
 import { API_URL, DEFAULT_HEADERS } from '@/constants';
 
 const graphQLClient = new GraphQLClient(API_URL, {

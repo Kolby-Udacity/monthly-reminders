@@ -1,7 +1,9 @@
-import type { AppProps } from 'next/app';
 import { FC } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import type { AppProps } from 'next/app';
+
 import { ThemeProvider } from '@/contexts/theme-context';
+
 import 'tailwindcss/tailwind.css';
 import '../styles/global.css';
 

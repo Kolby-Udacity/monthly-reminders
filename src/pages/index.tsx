@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+
 import { AppBar } from '@/components/app-bar';
+import { ThemeContext } from '@/contexts/theme-context';
 import { CreateList } from '@/features/create-list';
 import { DisplayLists } from '@/features/display-lists';
-import { ThemeContext } from '@/contexts/theme-context';
 
 const Home: NextPage = () => {
   const { themeMode } = useContext(ThemeContext);

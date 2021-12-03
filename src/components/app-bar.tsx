@@ -1,8 +1,9 @@
 import { FC, useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ThemeToggle } from '@/features/theme-toggle';
+
 import { ThemeContext } from '@/contexts/theme-context';
+import { ThemeToggle } from '@/features/theme-toggle';
 
 export const AppBar: FC = () => {
   const { themeMode } = useContext(ThemeContext);

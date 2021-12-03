@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { GraphQLClient } from 'graphql-request';
-import { Reminder } from '@/types';
+
 import { API_URL } from '@/constants';
+import { Reminder } from '@/types';
 
 const graphQLClient = new GraphQLClient(API_URL);
 
