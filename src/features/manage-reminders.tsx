@@ -66,6 +66,7 @@ export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
                   </button>
                   <button
                     className="text-blue bg-light px-2 py-1.5 rounded-lg border border-opacity-50 border-gray hover:bg-blue hover:bg-opacity-10"
+                    disabled={updateReminder.isLoading}
                     onClick={() =>
                       handleToggleFinishClick(reminder.id!, reminder.completed)
                     }
