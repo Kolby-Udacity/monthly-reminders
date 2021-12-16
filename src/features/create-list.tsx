@@ -26,7 +26,7 @@ export const CreateList: FC = () => {
       <IconButton
         text="+ Create a reminder list"
         onClick={handleButtonClick}
-        buttonProps={{ 'aria-label': 'Create a reminder list' }}
+        aria-label="Create a reminder list"
       />
     </>
   );
