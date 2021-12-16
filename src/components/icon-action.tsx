@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -22,12 +22,13 @@ const getContent = (text: string) => {
   );
 };
 
-export const IconButton: FC<{ text: string; onClick: () => void }> = ({
-  text,
-  onClick,
-}) => {
+export const IconButton: FC<{
+  text: string;
+  onClick: () => void;
+  buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>;
+}> = ({ text, onClick, buttonProps }) => {
   return (
-    <button className={baseStyles} onClick={onClick}>
+    <button className={baseStyles} onClick={onClick} {...buttonProps}>
       {getContent(text)}
     </button>
   );

@@ -23,7 +23,11 @@ export const CreateList: FC = () => {
       {createListModalVisible && (
         <CreateListModal onRequestClose={handleCloseModalRequest} />
       )}
-      <IconButton text="+ Create a reminder list" onClick={handleButtonClick} />
+      <IconButton
+        text="+ Create a reminder list"
+        onClick={handleButtonClick}
+        buttonProps={{ 'aria-label': 'Create a reminder list' }}
+      />
     </>
   );
 };
@@ -77,6 +81,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
           className="p-2 rounded-lg bg-white border border-gray w-full"
           {...register('title')}
           placeholder="title"
+          aria-label="title"
           type="text"
           autoFocus
         />
