@@ -9,7 +9,7 @@ const graphQLClient = new GraphQLClient(API_URL, {
 
 const deleteReminderList = (listId: string) => {
   return graphQLClient.request(`
-    mutation {
+    mutation deleteReminderList {
       deleteReminderList(where: {id: "${listId}"}) {
         id
       }

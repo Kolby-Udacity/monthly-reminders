@@ -4,14 +4,14 @@ import { gql, GraphQLClient } from 'graphql-request';
 import { z } from 'zod';
 
 import { API_URL, DEFAULT_HEADERS } from '@/constants';
-import { ReminderList,reminderListSchema } from '@/types';
+import { ReminderList, reminderListSchema } from '@/types';
 
 const graphQLClient = new GraphQLClient(API_URL, {
   headers: { ...DEFAULT_HEADERS },
 });
 
 const query = gql`
-  query {
+  query reminderLists {
     reminderLists {
       id
       title
