@@ -1,6 +1,6 @@
 import userEvent from '@testing-library/user-event';
 
-import { render, screen } from '../../../__tests__/utils/test-utils';
+import { render, screen } from '@/__tests__/utils/test-utils';
 
 import { IconButton } from './';
 

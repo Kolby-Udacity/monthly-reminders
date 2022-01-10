@@ -2,16 +2,16 @@ import userEvent from '@testing-library/user-event';
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 
+import GetListsJson from '@/__tests__/mocks/get-lists.json';
+import { gqlAssertBody, waitForRequest } from '@/__tests__/utils/graphql-tools';
+import { act, render, screen, within } from '@/__tests__/utils/test-utils';
 import List from '@/pages/list/[id]';
-
-import GetListsJson from '../mocks/get-lists.json';
-import { gqlAssertBody, waitForRequest } from '../utils/graphql-tools';
-import { act, render, screen, within } from '../utils/test-utils';
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 useRouter.mockReturnValue({
   query: { id: 'ckwawrhuwyd0g0d27sxp5nbsl' },
   prefetch: jest.fn(() => Promise.resolve(true)),
+  push: jest.fn(() => Promise.resolve(true)),
 });
 
 const handlers = [

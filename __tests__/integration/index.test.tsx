@@ -2,11 +2,10 @@ import userEvent from '@testing-library/user-event';
 import { graphql } from 'msw';
 import { setupServer } from 'msw/node';
 
+import GetListsJson from '@/__tests__/mocks/get-lists.json';
+import { gqlAssertBody, waitForRequest } from '@/__tests__/utils/graphql-tools';
+import { act, render, screen } from '@/__tests__/utils/test-utils';
 import Home from '@/pages/index';
-
-import GetListsJson from '../mocks/get-lists.json';
-import { gqlAssertBody, waitForRequest } from '../utils/graphql-tools';
-import { act, render, screen } from '../utils/test-utils';
 
 const handlers = [
   graphql.query('reminderLists', (req, res, ctx) => {
@@ -20,7 +19,7 @@ const handlers = [
 
 const server = setupServer(...handlers);
 
-describe('Home', () => {
+describe('Home Page', () => {
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
