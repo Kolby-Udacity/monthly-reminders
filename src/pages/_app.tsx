@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app';
 
 import { ThemeProvider } from '@/contexts/theme-context';
 
+import '@/i18n';
+
 import 'tailwindcss/tailwind.css';
 import '../styles/global.css';
 

@@ -1,5 +1,6 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import * as z from 'zod';
 
@@ -36,6 +37,7 @@ const formSchema = z.object({
 const CreateListModal: FC<{ onRequestClose: () => void }> = ({
   onRequestClose,
 }) => {
+  const { t } = useTranslation();
   const reminderListMutation = useCreateList();
   const {
     register,
@@ -72,7 +74,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
         className="fixed bg-light rounded-lg shadow-2xl z-20 w-150 p-10 mt-20 space-y-4"
         onSubmit={handleSubmit(handleCreateSubmit)}
       >
-        <h2>Create a list</h2>
+        <h2>{t('features.createListTitle')}</h2>
         <input
           className="p-2 rounded-lg bg-white border border-gray w-full"
           {...register('title')}
@@ -87,7 +89,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
           className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
           disabled={reminderListMutation.isLoading}
         >
-          Create list
+          {t('features.createListAction')}
         </button>
       </form>
     </>
