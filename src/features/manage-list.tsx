@@ -48,13 +48,16 @@ export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
             <div className="h-6 bg-blue rounded w-40" />
           </div>
         )}
-        <div className="space-x-2">
+        <div className="space-x-2" aria-label="Delete Reminder List">
           <Button onClick={handleDeleteClick} disabled={deleteList.isLoading}>
             <div className="w-10 h-10 flex items-center justify-center text-2xl">
               <BiTrash />
             </div>
           </Button>
-          <Button onClick={handleCreateReminderClick}>
+          <Button
+            onClick={handleCreateReminderClick}
+            aria-label="Create Reminder Item"
+          >
             <div className="w-10 h-10 flex items-center justify-center text-2xl">
               <BiListPlus />
             </div>
@@ -122,6 +125,7 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
             {...register('title')}
             className="p-2 rounded-lg bg-white border border-gray w-full"
             placeholder="title"
+            aria-label="title"
             type="text"
             autoFocus
           />
@@ -132,6 +136,7 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
             {...register('due', { valueAsNumber: true })}
             className="p-2 rounded-lg bg-white border border-gray w-full"
             placeholder="due"
+            aria-label="due"
             type="number"
           />
           {errors.due?.message && (
@@ -141,6 +146,7 @@ const CreateReminderModal: FC<{ listId: string; onRequestClose: () => void }> =
             {...register('notes')}
             className="p-2 rounded-lg bg-white border border-gray w-full"
             placeholder="notes"
+            aria-label="notes"
             type="text"
           />
           {errors.notes?.message && (

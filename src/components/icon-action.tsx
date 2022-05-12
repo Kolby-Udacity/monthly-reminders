@@ -1,6 +1,11 @@
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  text: string;
+  onClick: () => void;
+};
 
 const baseStyles =
   'w-full max-w-screen-sm flex items-center bg-white rounded-lg shadow-md hover:shadow-lg active:shadow-sm transition-shadow';
@@ -22,12 +27,9 @@ const getContent = (text: string) => {
   );
 };
 
-export const IconButton: FC<{ text: string; onClick: () => void }> = ({
-  text,
-  onClick,
-}) => {
+export const IconButton: FC<ButtonProps> = ({ text, onClick, ...props }) => {
   return (
-    <button className={baseStyles} onClick={onClick}>
+    <button className={baseStyles} onClick={onClick} {...props}>
       {getContent(text)}
     </button>
   );
