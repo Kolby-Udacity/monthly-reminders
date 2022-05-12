@@ -1,6 +1,7 @@
 {
   "features": {
     "createListTitle": "Create a list",
-    "createListAction": "Create list"
+    "createListAction": "Create list",
+    "features": "Features"
   }
 }
