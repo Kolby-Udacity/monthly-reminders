@@ -1,0 +1,67 @@
+{
+  "data": {
+    "reminderLists": [
+      {
+        "id": "ckwawrhuwyd0g0d27sxp5nbsl",
+        "title": "Bills",
+        "reminders": [
+          {
+            "id": "ckwd1ts34t3uw0c23p1ra6gzv",
+            "title": "Rent",
+            "due": 2,
+            "notes": "www.rent.com",
+            "completed": false
+          },
+          {
+            "id": "ckwd1uc5cthxj0b77u8j2lm35",
+            "title": "Power",
+            "due": 12,
+            "notes": "www.power.com",
+            "completed": true
+          },
+          {
+            "id": "ckwz3o52oevju0b34doo3yqu4",
+            "title": "Internet",
+            "due": 12,
+            "notes": "www.internet.com",
+            "completed": false
+          },
+          {
+            "id": "ckwz3ood4ew270b2887wh7a6z",
+            "title": "Gas",
+            "due": 2,
+            "notes": "www.gas.com",
+            "completed": true
+          },
+          {
+            "id": "ckx0rt8qwwmqf0b269hk3ykzh",
+            "title": "test",
+            "due": 2,
+            "notes": "testing",
+            "completed": true
+          }
+        ]
+      },
+      {
+        "id": "ckwawrr48yd2b0d278w1zn182",
+        "title": "Chores",
+        "reminders": [
+          {
+            "id": "ckwd1ut4gtixn0b2101pafndf",
+            "title": "Floors",
+            "due": 7,
+            "notes": "",
+            "completed": false
+          },
+          {
+            "id": "ckwd1v02gt4f40d27dgqcranq",
+            "title": "Bathrooms",
+            "due": 14,
+            "notes": "",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  }
+}

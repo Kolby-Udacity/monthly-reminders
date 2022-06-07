@@ -8,7 +8,7 @@ const graphQLClient = new GraphQLClient(API_URL);
 
 const createReminderList = (newReminder: Reminder, reminderListId: string) => {
   return graphQLClient.request(`
-    mutation {
+    mutation createReminder {
       createReminder(
         data: {
           title: "${newReminder.title}"
@@ -27,13 +27,7 @@ export const useCreateReminder = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    ({
-      newReminder,
-      reminderListId,
-    }: {
-      newReminder: Reminder;
-      reminderListId: string;
-    }) => {
+    ({ newReminder, reminderListId }: { newReminder: Reminder; reminderListId: string }) => {
       return createReminderList(newReminder, reminderListId);
     },
     {

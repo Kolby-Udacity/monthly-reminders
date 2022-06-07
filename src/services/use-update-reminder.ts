@@ -7,7 +7,7 @@ const graphQLClient = new GraphQLClient(API_URL);
 
 const updateReminder = (reminderId: string, completed: boolean) => {
   return graphQLClient.request(`
-    mutation {
+    mutation updateReminder {
       updateReminder(data: {completed: ${completed}}, where: {id: "${reminderId}"}) {
         id
       }

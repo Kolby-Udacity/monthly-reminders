@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
 import { IconButton } from '@/components/icon-action';
@@ -73,6 +73,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
       <button
         className="backdrop-filter backdrop-blur-sm fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-70 z-10"
         onClick={handleBackdropClick}
+        aria-label="backdrop"
       />
       <form
         className="fixed bg-light rounded-lg shadow-2xl z-20 w-150 p-10 mt-20 space-y-4"

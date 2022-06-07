@@ -4,14 +4,14 @@ import { gql, GraphQLClient } from 'graphql-request';
 import { z } from 'zod';
 
 import { API_URL, DEFAULT_HEADERS } from '@/constants';
-import { ReminderList,reminderListSchema } from '@/types';
+import { ReminderList, reminderListSchema } from '@/types';
 
 const graphQLClient = new GraphQLClient(API_URL, {
   headers: { ...DEFAULT_HEADERS },
 });
 
 const query = gql`
-  query {
+  query reminderLists {
     reminderLists {
       id
       title
@@ -27,18 +27,15 @@ const query = gql`
 `;
 
 export const useLists = () => {
-  const { data, error, isFetching } = useQuery<ReminderList[], Error>(
-    'reminderLists',
-    async () => {
-      const { reminderLists } = await graphQLClient.request(query);
+  const { data, error, isFetching } = useQuery<ReminderList[], Error>('reminderLists', async () => {
+    const { reminderLists } = await graphQLClient.request(query);
 
-      // Validate the unknown data
-      z.array(reminderListSchema).parse(reminderLists);
+    // Validate the unknown data
+    z.array(reminderListSchema).parse(reminderLists);
 
-      // Once validated we assert the type
-      return reminderLists as ReminderList[];
-    }
-  );
+    // Once validated we assert the type
+    return reminderLists as ReminderList[];
+  });
 
   useEffect(() => {
     if (error) console.error(`Error fetching Lists: ${error.message}`);
