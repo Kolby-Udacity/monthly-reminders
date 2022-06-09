@@ -14,13 +14,7 @@ const getContent = (text: string) => {
   return (
     <>
       <div className="-ml-12">
-        <Image
-          src="/folder.png"
-          width="131"
-          height="120"
-          quality={100}
-          alt=""
-        />
+        <Image src="/folder.png" width="131" height="120" quality={100} alt="" />
       </div>
       <h3 className="ml-4">{text}</h3>
     </>
@@ -29,16 +23,13 @@ const getContent = (text: string) => {
 
 export const IconButton: FC<ButtonProps> = ({ text, onClick, ...props }) => {
   return (
-    <button className={baseStyles} onClick={onClick} {...props}>
+    <button className={baseStyles} onClick={onClick} aria-label={text} {...props}>
       {getContent(text)}
     </button>
   );
 };
 
-export const IconLink: FC<{ text: string; href: string }> = ({
-  text,
-  href,
-}) => {
+export const IconLink: FC<{ text: string; href: string }> = ({ text, href }) => {
   return (
     <Link href={href}>
       <a className={baseStyles}>{getContent(text)}</a>

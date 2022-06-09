@@ -10,18 +10,11 @@ export const AppBar: FC = () => {
 
   return (
     <div
-      className={`h-16 shadow-sm flex items-center justify-center ${
-        themeMode === 'light' ? 'bg-white' : 'bg-black'
-      }`}
+      className={`h-16 shadow-sm flex items-center justify-center ${themeMode === 'light' ? 'bg-white' : 'bg-black'}`}
     >
       <Link href="/">
         <a>
-          <Image
-            src="/logo.png"
-            width="262"
-            height="41"
-            alt="Monthly Reminders"
-          />
+          <Image src="/logo.png" width="262" height="41" alt="Monthly Reminders" />
         </a>
       </Link>
       <div className="absolute right-4">

@@ -13,11 +13,7 @@ const List: NextPage = () => {
   const { themeMode } = useContext(ThemeContext);
 
   return (
-    <div
-      className={` min-h-screen flex-col ${
-        themeMode === 'light' ? 'bg-light' : 'bg-dark'
-      }`}
-    >
+    <div className={` min-h-screen flex-col ${themeMode === 'light' ? 'bg-light' : 'bg-dark'}`}>
       <Head>
         <title>Monthly Reminders</title>
         <link rel="icon" href="/favicon.ico" />

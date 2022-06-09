@@ -35,10 +35,7 @@ export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
   return (
     <>
       {reminderModalVisible && list?.id && (
-        <CreateReminderModal
-          listId={list.id}
-          onRequestClose={handleCloseModalRequest}
-        />
+        <CreateReminderModal listId={list.id} onRequestClose={handleCloseModalRequest} />
       )}
       <header className="flex justify-between w-full">
         {list ? (
@@ -49,19 +46,12 @@ export const ManageList: FC<{ list?: ReminderList }> = ({ list }) => {
           </div>
         )}
         <div className="space-x-2">
-          <Button
-            onClick={handleDeleteClick}
-            disabled={deleteList.isLoading}
-            aria-label="Delete Reminder List"
-          >
+          <Button onClick={handleDeleteClick} disabled={deleteList.isLoading} aria-label="Delete Reminder List">
             <div className="w-10 h-10 flex items-center justify-center text-2xl">
               <BiTrash />
             </div>
           </Button>
-          <Button
-            onClick={handleCreateReminderClick}
-            aria-label="Create Reminder Item"
-          >
+          <Button onClick={handleCreateReminderClick} aria-label="Create Reminder Item">
             <div className="w-10 h-10 flex items-center justify-center text-2xl">
               <BiListPlus />
             </div>
@@ -136,9 +126,7 @@ const CreateReminderModal: FC<{
           type="text"
           autoFocus
         />
-        {errors.title?.message && (
-          <p className="text-red">{errors.title.message}</p>
-        )}
+        {errors.title?.message && <p className="text-red">{errors.title.message}</p>}
         <input
           {...register('due', { valueAsNumber: true })}
           className="p-2 rounded-lg bg-white border border-gray w-full"
@@ -146,9 +134,7 @@ const CreateReminderModal: FC<{
           aria-label="due"
           type="number"
         />
-        {errors.due?.message && (
-          <p className="text-red">{errors.due.message}</p>
-        )}
+        {errors.due?.message && <p className="text-red">{errors.due.message}</p>}
         <input
           {...register('notes')}
           className="p-2 rounded-lg bg-white border border-gray w-full"
@@ -156,9 +142,7 @@ const CreateReminderModal: FC<{
           aria-label="notes"
           type="text"
         />
-        {errors.notes?.message && (
-          <p className="text-red">{errors.notes.message}</p>
-        )}
+        {errors.notes?.message && <p className="text-red">{errors.notes.message}</p>}
         <button
           className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
           disabled={createReminderMutation.isLoading}

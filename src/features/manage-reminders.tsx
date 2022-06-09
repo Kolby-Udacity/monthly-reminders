@@ -3,9 +3,7 @@ import { FC, ReactNode, useCallback, useMemo } from 'react';
 import { useDeleteReminder, useUpdateReminder } from '@/services';
 import { Reminder } from '@/types';
 
-export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
-  reminders,
-}) => {
+export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({ reminders }) => {
   const deleteReminder = useDeleteReminder();
   const updateReminder = useUpdateReminder();
 
@@ -51,10 +49,7 @@ export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
                   <p>{reminder.notes}</p>
                 </TableCell>
                 <TableCell>
-                  <StatusBadge
-                    dueDate={reminder.due}
-                    completed={reminder.completed}
-                  />
+                  <StatusBadge dueDate={reminder.due} completed={reminder.completed} />
                 </TableCell>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
@@ -67,9 +62,7 @@ export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
                   <button
                     className="text-blue bg-light px-2 py-1.5 rounded-lg border border-opacity-50 border-gray hover:bg-blue hover:bg-opacity-10"
                     disabled={updateReminder.isLoading}
-                    onClick={() =>
-                      handleToggleFinishClick(reminder.id!, reminder.completed)
-                    }
+                    onClick={() => handleToggleFinishClick(reminder.id!, reminder.completed)}
                   >
                     {reminder.completed ? 'Unfinish' : 'Finish'}
                   </button>
@@ -85,10 +78,7 @@ export const ManageReminders: FC<{ reminders?: Reminder[] }> = ({
 
 const TableHeader: FC<{ text: string }> = ({ text }) => {
   return (
-    <th
-      scope="col"
-      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
-    >
+    <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
       {text}
     </th>
   );
@@ -112,10 +102,7 @@ const colorOptions = {
   due: 'bg-blue border border-blue border-opacity-50',
 };
 
-const StatusBadge: FC<{ dueDate: number; completed: boolean }> = ({
-  dueDate,
-  completed,
-}) => {
+const StatusBadge: FC<{ dueDate: number; completed: boolean }> = ({ dueDate, completed }) => {
   const status = useMemo<Status>(() => {
     if (completed) {
       return 'done';
@@ -127,10 +114,6 @@ const StatusBadge: FC<{ dueDate: number; completed: boolean }> = ({
   }, [dueDate, completed]);
 
   return (
-    <div
-      className={`uppercase rounded-full px-3 py-0.5 text-xs bg-opacity-20 ${colorOptions[status]}`}
-    >
-      {status}
-    </div>
+    <div className={`uppercase rounded-full px-3 py-0.5 text-xs bg-opacity-20 ${colorOptions[status]}`}>{status}</div>
   );
 };

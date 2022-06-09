@@ -2,17 +2,12 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "esModuleInterop": true,
-    "types": [
-      "cypress",
-      "cypress-axe",
-      "@testing-library/cypress",
-      "@cypress-audit/lighthouse",
-      "@types/node"
-    ],
+    "types": ["cypress", "cypress-axe", "@testing-library/cypress", "@cypress-audit/lighthouse", "@types/node"],
     "paths": {
       "@/cypress/*": ["./*"]
-    }
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["**/*.ts", "src/**/*.spec.tsx"]
 }

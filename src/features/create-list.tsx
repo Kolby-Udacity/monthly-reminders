@@ -21,14 +21,8 @@ export const CreateList: FC = () => {
 
   return (
     <>
-      {createListModalVisible && (
-        <CreateListModal onRequestClose={handleCloseModalRequest} />
-      )}
-      <IconButton
-        text="+ Create a reminder list"
-        onClick={handleButtonClick}
-        aria-label="Create a reminder list"
-      />
+      {createListModalVisible && <CreateListModal onRequestClose={handleCloseModalRequest} />}
+      <IconButton text="+ Create a reminder list" onClick={handleButtonClick} aria-label="Create a reminder list" />
     </>
   );
 };
@@ -38,9 +32,7 @@ const formSchema = z.object({
   title: z.string().nonempty({ message: 'Required' }),
 });
 
-const CreateListModal: FC<{ onRequestClose: () => void }> = ({
-  onRequestClose,
-}) => {
+const CreateListModal: FC<{ onRequestClose: () => void }> = ({ onRequestClose }) => {
   const { t } = useTranslation();
   const reminderListMutation = useCreateList();
   const {
@@ -88,9 +80,7 @@ const CreateListModal: FC<{ onRequestClose: () => void }> = ({
           type="text"
           autoFocus
         />
-        {errors.title?.message && (
-          <p className="text-red">{errors.title.message}</p>
-        )}
+        {errors.title?.message && <p className="text-red">{errors.title.message}</p>}
         <button
           className="bg-red p-2 rounded-lg border-gray hover:bg-opacity-50 disabled:opacity-20"
           disabled={reminderListMutation.isLoading}

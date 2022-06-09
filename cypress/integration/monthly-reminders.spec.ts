@@ -1,3 +1,1 @@
-describe('monthly reminders', () => {
-  it('should display the monthly reminders', () => {});
-});
+describe('monthly reminders', () => {});

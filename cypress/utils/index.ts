@@ -7,19 +7,17 @@ export * from './mocks';
 export const terminalLog = (violations: any[]) => {
   cy.task(
     'log',
-    `${violations.length} accessibility violation${
-      violations.length === 1 ? '' : 's'
-    } ${violations.length === 1 ? 'was' : 'were'} detected`
+    `${violations.length} accessibility violation${violations.length === 1 ? '' : 's'} ${
+      violations.length === 1 ? 'was' : 'were'
+    } detected`
   );
 
-  const violationData = violations.map(
-    ({ id, impact, description, nodes }) => ({
-      id,
-      impact,
-      description,
-      nodes: nodes.length,
-    })
-  );
+  const violationData = violations.map(({ id, impact, description, nodes }) => ({
+    id,
+    impact,
+    description,
+    nodes: nodes.length,
+  }));
 
   cy.task('table', violationData);
 };
@@ -41,9 +39,7 @@ export const aliasOperation = (
   const operation = getOperation(req.body.query);
 
   if (!operation.name) {
-    throw new Error(
-      "Anonymous operations aren't allowed. Operation must have an operation name."
-    );
+    throw new Error("Anonymous operations aren't allowed. Operation must have an operation name.");
   }
 
   if (operation.name === operationName) {

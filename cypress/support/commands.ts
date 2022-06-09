@@ -35,11 +35,7 @@ type GraphQLVariables = {
 Cypress.Commands.add(
   'gqlAssertBody',
   { prevSubject: true },
-  (
-    subject: Interception,
-    graphQlString: string,
-    variables?: GraphQLVariables
-  ) => {
+  (subject: Interception, graphQlString: string, variables?: GraphQLVariables) => {
     const bodyVariables = subject.request.body.variables ?? {};
     const expectedVariables = variables ?? {};
     const bodyQueryJson = graphQlQueryToJson(subject.request.body.query, {
@@ -52,9 +48,7 @@ Cypress.Commands.add(
     try {
       expect(expectedQueryJson).to.deep.equal(bodyQueryJson);
     } catch (error) {
-      error.message = `expected ${JSON.stringify(
-        expectedQueryJson
-      )} to deeply equal ${JSON.stringify(bodyQueryJson)}`;
+      error.message = `expected ${JSON.stringify(expectedQueryJson)} to deeply equal ${JSON.stringify(bodyQueryJson)}`;
 
       throw Error(error);
     }
