@@ -20,9 +20,6 @@ import 'cypress-axe';
 
 import { terminalLog } from '../utils';
 
-const compareSnapshotCommand = require('cypress-image-diff-js/dist/command');
-compareSnapshotCommand();
-
 // Used to set default terminal log without needing to specify it on every call
 Cypress.Commands.add('checkAccessibility', (...args: any[]) => {
   let mockedTime = null;

@@ -6,7 +6,7 @@
     "build": "next build",
     "build:cypress": "FRONTEND_COVERAGE=true next build",
     "start": "next start",
-    "start:cypress": "FRONTEND_COVERAGE=true next start",
+    "start:cypress": "FRONTEND_COVERAGE=true next start -p 3001",
     "test:integration-open": "TZ=America/Los_Angeles cypress open --browser=chrome --e2e",
     "test:integration-run": "TZ=America/Los_Angeles cypress run --browser=chrome --e2e",
     "test:component-open": "TZ=America/Los_Angeles cypress open --browser=chrome --component",

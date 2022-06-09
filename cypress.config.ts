@@ -6,7 +6,7 @@ const { lighthouse, prepareAudit } = require('@cypress-audit/lighthouse');
 export default defineConfig({
   watchForFileChanges: false,
   e2e: {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'http://localhost:3001',
     specPattern: 'cypress/integration/**/*.spec.{js,jsx,ts,tsx}',
     viewportWidth: 1366,
     viewportHeight: 720,
@@ -17,7 +17,6 @@ export default defineConfig({
     },
     setupNodeEvents(on, config): Cypress.PluginConfigOptions {
       require('@cypress/code-coverage/task')(on, config);
-      require('cypress-image-diff-js/dist/plugin')(on, config);
 
       on('before:browser:launch', (browser, launchOptions) => {
         prepareAudit(launchOptions);
