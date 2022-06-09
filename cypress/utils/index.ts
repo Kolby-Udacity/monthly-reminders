@@ -2,6 +2,8 @@
 import { CyHttpMessages, StaticResponse } from 'cypress/types/net-stubbing';
 import { getOperationAST, parse } from 'graphql';
 
+export * from './mocks';
+
 export const terminalLog = (violations: any[]) => {
   cy.task(
     'log',

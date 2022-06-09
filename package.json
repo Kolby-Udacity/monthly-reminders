@@ -44,6 +44,7 @@
     "cypress": "10.0.3",
     "cypress-axe": "0.14.0",
     "cypress-image-diff-js": "1.19.2",
+    "deepmerge": "^4.2.2",
     "eslint": "7.32.0",
     "eslint-config-next": "12.1.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
