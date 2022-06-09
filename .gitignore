@@ -9,6 +9,7 @@
 /coverage
 /cypress/videos
 .nyc_output
+dist
 
 
 # next.js

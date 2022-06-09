@@ -17,6 +17,8 @@ import { mount } from 'cypress/react';
 
 import './commands';
 
+import '../../dist/global.css';
+
 declare global {
   namespace Cypress {
     interface Chainable {
